@@ -1,0 +1,32 @@
+==MalariaAUTOstage.c==
+
+This program will use the PIC16F84A chip to drive one step motor for the Tensile Tester Bioreactor
+
+****  This is specifically for use with 4-wire steppers, operated in unipolar mode  ****
+
+Use PCW (14-bit compiler) to compile.
+
+Circuit configuration:
+  HS crystal Oscillator, 
+  crystal=4 MHz,
+  1 MHz instruction cycle,
+  watch dog timer ON,
+  Code Protect OFF
+
+
+                             PIC16F84A Pinout:
+
+                               __________   _________
+                              |         [___]        |
+                Motor 4 <-- 1-| RA2              RA1 |-18 -->  Motor 2
+                Motor 3 <-- 2-| RA3              RA0 |-17 -->  Motor 1
+        Camera Trigger  <-- 3-| RA4/T0CK1       OSC1 |-16 --   XTAL
+                    +5V  -- 4-| MCLR'           OSC2 |-15 --   XTAL
+                    GND  -- 5-| GND              +5V |-14 --   +5V
+RUN button (active LOW) --> 6-| RB0              RB7 |-13 <--  FWD/REV Sw (LOW = Y axis, HIGH = X axis)
+           other motor  <-- 7-| RB1              RB6 |-12 <--  LENGTHENY/LENGTHENX button (active LOW)
+           other motor  <-- 8-| RB2              RB5 |-11 <--  SHORTENY/SHORTENX button (active LOW)
+           other motor  <-- 9-| RB3              RB4 |-10 -->  other motor
+                              |______________________|
+
+
